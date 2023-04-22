@@ -62,6 +62,7 @@ jobs:
 
               # git clone -b ${kernel_branch} --depth=1 ${kernel_git} kernel
               pushd kernel
+                cat ../docker_defconfig >> arch/riscv/configs/revyos_defconfig
                 make CROSS_COMPILE=${toolchain_tripe} ARCH=${ARCH} revyos_defconfig
                 make CROSS_COMPILE=${toolchain_tripe} ARCH=${ARCH} -j$(nproc)
                 make CROSS_COMPILE=${toolchain_tripe} ARCH=${ARCH} -j$(nproc) dtbs
