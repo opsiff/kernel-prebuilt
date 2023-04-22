@@ -35,6 +35,11 @@ jobs:
                   /usr/bin/riscv64-linux-gnu-gcc riscv64-gcc /usr/bin/riscv64-linux-gnu-gcc-12 10
               sudo update-alternatives --install \
                   /usr/bin/riscv64-linux-gnu-g++ riscv64-g++ /usr/bin/riscv64-linux-gnu-g++-12 10
+             
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+            path: 'repo'
 
       - name: Checkout kernel
         uses: actions/checkout@v3
@@ -62,7 +67,7 @@ jobs:
 
               # git clone -b ${kernel_branch} --depth=1 ${kernel_git} kernel
               pushd kernel
-                cat ../docker_defconfig >> arch/riscv/configs/revyos_defconfig
+                cat ../repo/docker_defconfig >> arch/riscv/configs/revyos_defconfig
                 make CROSS_COMPILE=${toolchain_tripe} ARCH=${ARCH} revyos_defconfig
                 make CROSS_COMPILE=${toolchain_tripe} ARCH=${ARCH} -j$(nproc)
                 make CROSS_COMPILE=${toolchain_tripe} ARCH=${ARCH} -j$(nproc) dtbs
