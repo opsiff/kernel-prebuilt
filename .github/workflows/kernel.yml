@@ -60,11 +60,11 @@ jobs:
         run: |
               mkdir rootfs && mkdir rootfs/boot
               wget ${xuetie_toolchain}/${toolchain_file_name}
-              tar -xvf ${toolchain_file_name} -C /opt
+              tar -xvf ${toolchain_file_name} -C ./opt
 
       - name: Compile Kernel && Install
         run: |
-              export PATH="/opt/Xuantie-900-gcc-linux-5.10.4-glibc-x86_64-V2.6.1/bin:$PATH"
+              export PATH="./opt/Xuantie-900-gcc-linux-5.10.4-glibc-x86_64-V2.6.1/bin:$PATH"
 
               # git clone -b ${kernel_branch} --depth=1 ${kernel_git} kernel
               pushd kernel
@@ -87,7 +87,7 @@ jobs:
 
       - name: IMG_MODULE compile
         run: |
-              export PATH="/opt/Xuantie-900-gcc-linux-5.10.4-glibc-x86_64-V2.6.1/bin:$PATH"
+              export PATH="./opt/Xuantie-900-gcc-linux-5.10.4-glibc-x86_64-V2.6.1/bin:$PATH"
 
               export PVR_BUILD_DIR=thead_linux
               export PVR_ARCH=rogue
