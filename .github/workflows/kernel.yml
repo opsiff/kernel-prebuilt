@@ -1,5 +1,4 @@
 name: revyos-kernel-build
-runs-on: self-hosted
 on:
   workflow_dispatch:
   push:
@@ -15,7 +14,7 @@ env:
 
 jobs:
   kernel:
-    runs-on: 	ubuntu-22.04
+    runs-on: 	self-hosted
     env:
       kernel_branch: lpi4a-dev
       kernel_name: revyos/thead-kernel
